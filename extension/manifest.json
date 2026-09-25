@@ -8,7 +8,7 @@
 		"activeTab"
 	],
 	"host_permissions": [
-		"*://codeforces.com/*",
+		"*://codeforces.com/*/submission/*",
 		"*://luogu.com.cn/*",
 		"*://luogu.com/*",
 		"*://atcoder.com/*"
@@ -19,7 +19,7 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"*://codeforces.com/*",
+				"*://codeforces.com/*/submission/*",
 				"*://*.luogu.com.cn/*",
 				"*://luogu.com/*",
 				"*://*.atcoder.com/*"
