@@ -1,0 +1,32 @@
+{
+	"manifest_version": 3,
+	"name": "CP Compass Client",
+	"description": "OJ代码收集客户端",
+	"version": "1.0",
+	"permissions": [
+		"storage",
+		"activeTab"
+	],
+	"host_permissions": [
+		"*://codeforces.com/*",
+		"*://luogu.com.cn/*",
+		"*://luogu.com/*",
+		"*://atcoder.com/*"
+	],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"*://codeforces.com/*",
+				"*://*.luogu.com.cn/*",
+				"*://luogu.com/*",
+				"*://*.atcoder.com/*"
+			],
+			"js": [
+				"content.js"
+			]
+		}
+	]
+}
