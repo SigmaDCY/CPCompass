@@ -1,4 +1,4 @@
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse)
 {
-    console.log("Received message:", message);
+	console.log("Received message:", message);
 });
