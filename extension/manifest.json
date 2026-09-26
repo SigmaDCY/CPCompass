@@ -9,8 +9,8 @@
 	],
 	"host_permissions": [
 		"*://codeforces.com/*/submission/*",
-		"*://luogu.com.cn/*",
-		"*://luogu.com/*",
+		"*://*.luogu.com.cn/record/*",
+		"*://*.luogu.com/record/*",
 		"*://atcoder.com/*"
 	],
 	"background": {
@@ -20,8 +20,8 @@
 		{
 			"matches": [
 				"*://codeforces.com/*/submission/*",
-				"*://*.luogu.com.cn/*",
-				"*://luogu.com/*",
+				"*://*.luogu.com.cn/record/*",
+				"*://*.luogu.com/record/*",
 				"*://*.atcoder.com/*"
 			],
 			"js": [
