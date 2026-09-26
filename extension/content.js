@@ -24,7 +24,7 @@ if (source === "Codeforces")
 		const cells = row.querySelectorAll("td");
 		const submissionId = "CF" + parseInt(cells[0].innerText);
 		const problemId = cells[2].innerText.split(" - ")[0].trim(); // 舍弃problem version信息
-		const verdict = cells[4].innerText;
+		const verdict = (cells[4].innerText) === "Accepted" ? "Accepted" : "UnAccepted";
 		const score = verdict === "Accepted" ? 100 : 0;
 		const submissionTime = (new Date(cells[7].innerText.replace(" ", "T") + "+03:00")).toLocaleString(); // ISO 8601 UTC+3
 		payload =
@@ -49,7 +49,7 @@ if (source === "Luogu")
 		const codeText = data.sourceCode;
 		const submissionId = "LG" + data.id;
 		const problemId = data.problem.pid;
-		const verdict = data.accepted ? "Accepted" : "UnAccepted";
+		const verdict = data.problem.accepted ? "Accepted" : "UnAccepted";
 		const score = data.score;
 		const submissionTime = (new Date(data.submitTime * 1000)).toLocaleString();
 		payload =

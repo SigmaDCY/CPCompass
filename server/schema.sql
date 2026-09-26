@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS submissions
 (
-  source TEXT,
   id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source TEXT,
   submissionId TEXT UNIQUE,
   problemId TEXT,
   verdict TEXT,
