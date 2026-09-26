@@ -29,8 +29,8 @@ export default
 					console.log("Received data:", data);
 
 					// 将数据插入到SQLite数据库中
-					const stmt = env.db.prepare("INSERT OR IGNORE INTO submissions (submissionId, problemId, verdict, score, submissionTime, code) VALUES (?, ?, ?, ?, ?, ?)");
-					await stmt.bind(data.submissionId, data.problemId, data.verdict, data.score, data.submissionTime, data.code).run();
+					const stmt = env.db.prepare("INSERT OR IGNORE INTO submissions (source, submissionId, problemId, verdict, score, submissionTime, code) VALUES (?, ?, ?, ?, ?, ?, ?)");
+					await stmt.bind(data.source, data.submissionId, data.problemId, data.verdict, data.score, data.submissionTime, data.code).run();
 
 					return new Response(JSON.stringify({ message: "Data inserted successfully" }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
 				}

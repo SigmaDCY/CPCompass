@@ -11,7 +11,7 @@
 		"*://codeforces.com/*/submission/*",
 		"*://*.luogu.com.cn/record/*",
 		"*://*.luogu.com/record/*",
-		"*://atcoder.com/*"
+		"*://atcoder.jp/*"
 	],
 	"background": {
 		"service_worker": "background.js"
@@ -22,7 +22,7 @@
 				"*://codeforces.com/*/submission/*",
 				"*://*.luogu.com.cn/record/*",
 				"*://*.luogu.com/record/*",
-				"*://*.atcoder.com/*"
+				"*://*.atcoder.jp/*"
 			],
 			"js": [
 				"content.js"
