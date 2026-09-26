@@ -26,7 +26,7 @@ if (source === "Codeforces")
 		const problemId = cells[2].innerText.split(" - ")[0].trim(); // 舍弃problem version信息
 		const verdict = cells[4].innerText;
 		const score = verdict === "Accepted" ? 100 : 0;
-		const submissionTime = (new Date(cells[7].innerText.replace(" ", "T") + "+03:00")).toLocaleString（）; // ISO 8601 UTC+3
+		const submissionTime = (new Date(cells[7].innerText.replace(" ", "T") + "+03:00")).toLocaleString(); // ISO 8601 UTC+3
 		payload =
 		{
 			source: source,
