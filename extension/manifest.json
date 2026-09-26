@@ -8,8 +8,10 @@
 		"activeTab"
 	],
 	"host_permissions": [
-		"https://*",
-		"http://*"
+		"*://codeforces.com/*/submission/*",
+		"*://*.luogu.com.cn/record/*",
+		"*://*.luogu.com/record/*",
+		"*://*.atcoder.jp/*"
 	],
 	"background": {
 		"service_worker": "background.js"
