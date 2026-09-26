@@ -65,8 +65,8 @@ async function parseAndSendSubmission()
 				const codeText = data.sourceCode;
 				const submissionId = "LG" + data.id;
 				const problemId = data.problem.pid;
-				const verdict = data.problem.accepted ? "Accepted" : "UnAccepted";
 				const score = data.score;
+				const verdict = (data.problem.fullScore === score) ? "Accepted" : "UnAccepted";
 				const submissionTime = (new Date(data.submitTime * 1000)).toLocaleString();
 
 				payload = {

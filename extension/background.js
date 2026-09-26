@@ -2,7 +2,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) =>
 {
 	console.log("Received message:", message);
 	const data = await chrome.storage.local.get(['apiToken', 'url']);
-	console.log(data.url + "/submit");
+	console.log("fetch " + data.url + "/submit");
 	fetch(data.url + "/submit",
 		{
 			method: "POST",
