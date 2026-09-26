@@ -28,5 +28,8 @@
 				"content.js"
 			]
 		}
-	]
+	],
+	"action": {
+		"default_popup": "popup.html"
+	}
 }

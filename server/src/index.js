@@ -1,0 +1,47 @@
+const corsHeaders =
+{
+	"Access-Control-Allow-Origin": "*",
+	"Access-Control-Allow-Methods": "POST, OPTIONS",
+	"Access-Control-Allow-Headers": "Content-Type, X-CP-Compass-API-Token"
+}
+
+export default
+	{
+		async fetch(request, env, ctx)
+		{
+			if (request.method === "OPTIONS")
+			{
+				return new Response(null, { headers: corsHeaders });
+			}
+			const url = new URL(request.url);
+
+			if (url.pathname === "/submit")
+			{
+				if (request.method === "POST")
+				{
+					const token = request.headers.get("X-CP-Compass-API-Token");
+					if (!token || token !== env.API_TOKEN)
+					{
+						console.log("Unauthorized access attempt with token:", token);
+						return new Response("Unauthorized", { status: 401, headers: corsHeaders });
+					}
+					const data = await request.json(); // 解析JSON数据
+					console.log("Received data:", data);
+
+					// 将数据插入到SQLite数据库中
+					const stmt = env.db.prepare("INSERT OR IGNORE INTO submissions (submissionId, problemId, verdict, submissionTime, code) VALUES (?, ?, ?, ?, ?)");
+					await stmt.bind(data.submissionId, data.problemId, data.verdict, data.submissionTime, data.code).run();
+
+					return new Response(JSON.stringify({ message: "Data inserted successfully" }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
+				}
+				else
+				{
+					return new Response("Method Not Allowed", { status: 405, headers: corsHeaders });
+				}
+			}
+			else
+			{
+				return new Response("Not Found", { status: 404, headers: corsHeaders });
+			}
+		}
+	};
