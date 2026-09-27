@@ -11,7 +11,7 @@ if (!match[1])
 	process.exit(1);
 }
 
-const content = 'name = "cp-compass-server"\nmain = "src/index.js"\ncompatibility_date = "2026-09-25"\n\n[[d1_databases]]\nbinding = "db"\ndatabase_name = "cp-compass-db"\ndatabase_id = "' + match[1] + '"'; // 构建wrangler.toml内容
+const content = 'name = "cp-compass-server"\nmain = "src/index.js"\ncompatibility_date = "2026-09-25"\n\n[[d1_databases]]\nbinding = "db"\ndatabase_name = "cp-compass-db"\ndatabase_id = "' + match[1] + '"\n\n[assets]\ndirectory = "./public"\nbinding = "ASSETS"'; // 构建wrangler.toml内容
 fs.writeFileSync("wrangler.toml", content); // 将database_id写入wrangler.toml文件
 
 execSync('npx wrangler d1 execute cp-compass-db --local --file=schema.sql') // 建表

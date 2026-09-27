@@ -15,7 +15,7 @@ export default
 			}
 			const url = new URL(request.url);
 
-			if (url.pathname === "/submit")
+			if (url.pathname === "/submit") // 提交代码
 			{
 				if (request.method === "POST")
 				{
@@ -38,6 +38,18 @@ export default
 				{
 					return new Response("Method Not Allowed", { status: 405, headers: corsHeaders });
 				}
+			}
+			else if (url.pathname === "/api/submissions") // 查询已提交的代码
+			{
+				if (request.method === "GET")
+				{
+					const result = await env.db.prepare("SELECT id, source, submissionId, problemId, verdict, score, submissionTime FROM submissions ORDER BY id DESC LIMIT 50").all();
+					return new Response(JSON.stringify(result.results), { headers: { "Content-Type": "application/json", ...corsHeaders } });
+				}
+			}
+			else if (url.pathname === '/')
+			{
+				return env.ASSETS.fetch(request);
 			}
 			else
 			{
