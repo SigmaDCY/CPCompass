@@ -32,7 +32,7 @@ async function parseAndSendSubmission()
 			if (submitterName === cfUsername)
 			{
 				const codeText = codeElement.innerText;
-				const submissionId = parseInt(cells[0].innerText);
+				const submissionId = "CF" + parseInt(cells[0].innerText);
 				const problemId = cells[2].innerText.split(" - ")[0].trim(); // 舍弃problem version信息
 				const verdict = (cells[4].innerText) === "Accepted" ? "Accepted" : "UnAccepted";
 				const score = verdict === "Accepted" ? 100 : 0;
@@ -63,7 +63,7 @@ async function parseAndSendSubmission()
 			if (data.user.name === lgUsername)
 			{
 				const codeText = data.sourceCode;
-				const submissionId = data.id;
+				const submissionId = "LG" + data.id;
 				const problemId = data.problem.pid;
 				const score = data.score;
 				const verdict = (data.problem.fullScore === score) ? "Accepted" : "UnAccepted";
