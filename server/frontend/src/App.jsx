@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react"
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import cpp from 'react-syntax-highlighter/dist/esm/languages/prism/cpp';
 import "./index.css"
 
 function App()
 {
+	const [selectedCode, setSelectedCode] = useState(null);
 	const [submissions, setSubmissions] = useState([]);
 	useEffect(() =>
 	{
@@ -27,7 +31,9 @@ function App()
 						</thead>
 						<tbody>
 							{submissions.map((item) => (
-								<tr key={item.id} className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer">
+								<tr key={item.id} className="border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer"
+									onClick={() => setSelectedCode(item.code)}>
+									{/*当用户点击这一行时，把这一条的代码字符串存入状态，触发重新渲染*/}
 									<td className="px-6 py-4 text-white font-medium">{item.source}</td>
 									<td className="px-6 py-4 text-white font-medium">{item.submissionId.substring(2)}</td>
 									<td className="px-6 py-4 text-sm text-gray-500">{item.problemId}</td>
@@ -42,6 +48,31 @@ function App()
 					</table>
 				</div>
 			</div>
+			{
+				selectedCode &&
+				(
+					<div className="fixed inset-0 bg-black/30 flex items-center justify-center p-4 z-50" onClick={() => setSelectedCode(null)}>
+						{/* 点击遮罩层关闭弹窗 */}
+						<div className="bg-gray-800 rounded-xl p-6 max-w-4xl w-full h-[80vh] flex flex-col" onClick={e => e.stopPropagation()}>
+							{/* stopPropagation 阻止冒泡，这样点击弹窗内部不会关闭弹窗 */}
+							<div className="flex justify-between items-center mb-4">
+								<h2 className="text-xl font-bold text-white">源代码</h2>
+								<button className="text-gray-400 hover:text-white" onClick={() => setSelectedCode(null)}>关闭</button>
+							</div>
+							<div className="flex-1 min-h-0 overflow-auto">
+								<SyntaxHighlighter
+									language="cpp"
+									style={vscDarkPlus}
+									showLineNumbers={true}
+									customStyle={{ margin: 0, background: 'transparent', fontSize: '14px' }}
+								>
+									{selectedCode}
+								</SyntaxHighlighter>
+							</div>
+						</div>
+					</div>
+				)
+			}
 		</div>
 	);
 }

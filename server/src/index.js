@@ -43,7 +43,7 @@ export default
 			{
 				if (request.method === "GET")
 				{
-					const result = await env.db.prepare("SELECT id, source, submissionId, problemId, verdict, score, submissionTime FROM submissions ORDER BY id DESC LIMIT 50").all();
+					const result = await env.db.prepare("SELECT id, source, submissionId, problemId, verdict, score, submissionTime, code FROM submissions ORDER BY id DESC LIMIT 50").all();
 					return new Response(JSON.stringify(result.results), { headers: { "Content-Type": "application/json", ...corsHeaders } });
 				}
 			}
